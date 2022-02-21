@@ -56,9 +56,6 @@ for intSlide = 1:length(sCziDir)
     sParams.cellCziFiles{intSlide} = sCziDir(intSlide).name;
 end
 
-%save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
-
 %% convert .czi to .tifs
 %try increasing java heap memory (preferences > general) if this gives an error, ignore log4j warning
 h = waitbar(0,'Converting .czis to .tifs...');
@@ -83,8 +80,7 @@ for intChan = 1:length(sParams.cellChannels)
 end
 
 %save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
-    
+save([
 %% select channel & resize/white balance images for alignment
 %query user for channel (for now, select only one - DAPI works fine)
 [intSelectedCh,~] = listdlg('PromptString', {'Select channel for alignment (e.g., DAPI)'}, 'SelectionMode', 'single', ...
@@ -118,9 +114,6 @@ end
 %-new files are created (MOUSENAME_DATE_SX_CHANNEL.tif)
 %-original files are deleted!
 OrganizeOriginalScenes(sParams);
-
-%save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
 
 %% create training set for ilastik (optional)
 strAnswer = questdlg('Would you like to create training images for ilastik?', ...
