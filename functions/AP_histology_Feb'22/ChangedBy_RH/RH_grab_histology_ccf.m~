@@ -124,7 +124,7 @@ switch eventdata.Key
         guidata(gui_fig,gui_data);
         
         update_histology_slice(gui_fig);
-        gui_title = ['New saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ' of ' num2str(length(gui_data.slice_im)) ')'];
+        gui_title = ['No saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ' of ' num2str(length(slice_im_fn))];
         %         title(gui_data.histology_ax,'New saved atlas position');
         title(gui_data.histology_ax, gui_title);
         
@@ -190,13 +190,15 @@ set(gui_data.histology_im_h,'CData',gui_data.slice_im{gui_data.curr_histology_sl
 if all(~isnan(gui_data.slice_points(gui_data.curr_histology_slice,:)))
     gui_data.atlas_slice_point = ...
         gui_data.slice_points(gui_data.curr_histology_slice,:);
-    gui_title = ['Saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ' of ' num2str(length(gui_data.slice_im)) ')'];
+    gui_title = ['Saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ...
+        ' of ' num2str(length(slice_im_fn))];
     %     title(gui_data.histology_ax,'Saved atlas position')
     title(gui_data.histology_ax, gui_title)
     guidata(gui_fig,gui_data);
     update_atlas_slice(gui_fig);
 else
-    gui_title = ['No saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ' of ' num2str(length(gui_data.slice_im)) ')'];
+    gui_title = ['Saved atlas position (slice ' num2str(gui_data.curr_histology_slice) ...
+        ' of ' num2str(length(slice_im_fn))];
     %     title(gui_data.histology_ax,'No saved atlas position')
     title(gui_data.histology_ax, gui_title)
     

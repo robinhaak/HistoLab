@@ -2,9 +2,9 @@
 %PRE-PROCESS slice images & ALIGN to Allen CCF
 %Robin Haak, 19 Feb '22
 %
-%-split czi into multiple tiffs
+%-split .czis into multiple .tifs (per scene, per channel)
 %-reorder and/or flip slices, if applicable
-%-create training set for ilastik (cell detection), optional
+%-create training set for ilastik (cell detection)
 %
 %(!)files should be organized so that a folder contains images of 1 subject(!)
 %(!)assumes that the same scan profile is used for all images(!)
