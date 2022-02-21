@@ -10,6 +10,7 @@
 %(!)assumes that the same scan profile is used for all images(!)
 
 %% set path to Allen CCF files
+%download from: http://data.cortexlab.net/allenCCF/
 strAllenAtlasPath = '/Users/robinhaak/Desktop/CCF_10um';
 
 %% query user for experiment metadata
@@ -145,5 +146,7 @@ uiwait(h);
 %-first: automatically, by outline
 RH_auto_align_histology_ccf(sParams.strAlignmentSlicesPath);
 %-second: curate manually
-RH_manual_align_histology_ccf(vecTv, vecAV, tblST, sParams.strAlignmentSlicesPath);
+RH_manual_align_histology_ccf(vecTV, vecAV, tblST, sParams.strAlignmentSlicesPath);
 
+%display aligned CCF over histology slices
+RH_view_aligned_histology(tblST, sParams.strAlignmentSlicesPath);

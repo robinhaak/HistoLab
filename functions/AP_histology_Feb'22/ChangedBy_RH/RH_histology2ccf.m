@@ -26,7 +26,6 @@ else
     ccf_alignment_fn = [slice_im_path filesep 'atlas2histology_tform_auto.mat'];
     load(ccf_alignment_fn);
     tform = affine2d;
-    tmethod = 1;
 end
 
 ccf_points = cell(length(atlas2histology_tform),1);
