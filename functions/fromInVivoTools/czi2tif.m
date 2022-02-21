@@ -6,12 +6,8 @@ function [info] = czi2tif(filename,outputpath, scalenr,verbose,for_amasine)
 %      SCALENR starts at 1, largest scale first
 %
 % 2021, Alexander Heimel
-% 2022, Robin Haak: output "info"
+% 2022, Robin Haak: rm nargin < 1, output "info"
 
-
-if nargin<1 || isempty(filename)
-    filename = '\\vs01\CSF_DATA\Shared\InVivo\Experiments\TAC1_Cfos_images\Jump_TMT\58172\Jacqueline_2021_03_26_0037_4-3.czi';
-end
 if nargin<2 || isempty(outputpath)
     outputpath = fileparts(filename);
 end
@@ -48,3 +44,5 @@ for s = scenes
         imwrite(img,outputfilename,'tiff');
     end
 end
+
+

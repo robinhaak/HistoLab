@@ -1,7 +1,8 @@
-function RH_reorder_flip_histology_gui(im_path)
+function gui_fig = RH_reorder_flip_histology(im_path)
 % RH_reorder_flip_histology, based on: AP_rotate_histology(im_path)
 %
 % Robin Haak, Feb '22
+% I'm aware this has become somewhat messy
 
 slice_dir = dir([im_path filesep '*.tif']);
 slice_fn = natsortfiles(cellfun(@(path,fn) [path filesep fn], ...
@@ -121,6 +122,35 @@ switch eventdata.Key
         opts.Interpreter = 'tex';
         user_confirm = questdlg('\fontsize{15} Save and quit?','Confirm exit',opts);
         if strcmp(user_confirm,'Yes')
+            
+            %overwrite with new images
+            im_path = gui_data.im_path;
+            slice_dir = dir([im_path filesep '*.tif']);
+            slice_fn = natsortfiles(cellfun(@(path,fn) [path filesep fn], ...
+                {slice_dir.folder},{slice_dir.name},'uni',false));
+            slice_im = cell(length(slice_fn),1);
+            for curr_slice = 1:length(slice_fn)
+                slice_im{curr_slice} = imread(slice_fn{curr_slice});
+            end
+            slice_im_new = cell(length(slice_fn),1);
+            for curr_slice = 1:length(slice_fn)
+                new_pos = find(gui_data.slice_order==curr_slice);
+                slice_im_new{new_pos} = slice_im{curr_slice};
+                if gui_data.flipped_lr(new_pos) == 1
+                    slice_im_new{new_pos} = fliplr(slice_im_new{new_pos});
+                end
+                if gui_data.flipped_ud(new_pos) == 1
+                    slice_im_new{new_pos} = flipud(slice_im_new{new_pos});
+                end
+                slice_im_new_fn = [im_path filesep num2str(new_pos) '.tif'];
+                imwrite(slice_im_new{new_pos}, slice_im_new_fn);
+            end
+            
+            %create montage
+            figure;
+            title('New order')
+            montage(slice_im_new(1:length(slice_fn),:));
+            
             %save
             save_fn = [gui_data.im_path filesep 'reorderedflipped_histology.mat'];
             out.slice_order = gui_data.slice_order;

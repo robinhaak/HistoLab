@@ -45,7 +45,7 @@ ylim([1,ml_max]);
 zlim([1,dv_max]);
 colormap(gui_data.atlas_ax,'gray');
 caxis([0,400]);
-gui_data.atlas_title = title(sprintf('Slice position: %d mm (approx. %d mm from bregma)',0,0));
+gui_data.atlas_title = title(sprintf('Slice position: %d mm',0,0));
 
 % Create slice object and first slice point
 gui_data.atlas_slice_plot = surface(gui_data.atlas_ax,'EdgeColor','none'); % Slice on 3D atlas
@@ -334,7 +334,7 @@ av_slice(curr_slice_isbrain) = gui_data.av(grab_pix_idx);
 % Update slice position title
 plane_offset_mm = plane_offset/100; % CCF = 10um voxels
 set(gui_data.atlas_title,'string', ...
-    sprintf('Slice position: %.2f mm (approx. %.2f mm from bregma)',plane_offset_mm, plane_offset_mm-5.4));
+    sprintf('Slice position: %.2f mm',plane_offset_mm, plane_offset_mm-5.4));
 
 end
 
