@@ -58,7 +58,7 @@ for intSlide = 1:length(sCziDir)
 end
 
 %save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
+save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
 
 %% convert .czi to .tifs
 %try increasing java heap memory (preferences > general) if this gives an error, ignore log4j warning
@@ -84,7 +84,7 @@ for intChan = 1:length(sParams.cellChannels)
 end
 
 %save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
+save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], 'sParams');
     
 %% select channel & resize/white balance images for alignment
 %query user for channel (for now, select only one - DAPI works fine)
@@ -121,14 +121,14 @@ end
 OrganizeOriginalScenes(sParams);
 
 %save sParams
-save([sParams.strSlidePath filsep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
+save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], 'sParams');
 
 %% create training set for ilastik (optional)
 strAnswer = questdlg('Would you like to create training images for ilastik?', ...
 	'', 'Yes','No','Yes');
 switch strAnswer
     case 'Yes'
-        MakeTrainingImagesIlastik(sParams);
+        MakeTrainingImagesIlastik(sParams); %briefly shows the original + white-balanced image, only first is saved
     case 'No'
 end
 
