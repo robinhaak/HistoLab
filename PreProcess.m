@@ -11,7 +11,7 @@
 
 %% set path to Allen CCF files
 %download from: http://data.cortexlab.net/allenCCF/
-strAllenAtlasPath = '/Users/robinhaak/Desktop/CCF_10um';
+strAllenAtlasPath = 'C:\Users\haak\Desktop\AllenCCF_10um';
 
 %% query user for experiment metadata
 sParams = struct;
@@ -58,7 +58,7 @@ for intSlide = 1:length(sCziDir)
 end
 
 %save sParams
-save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], sParams);
+save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], 'sParams');
 
 %% convert .czi to .tifs
 %try increasing java heap memory (preferences > general) if this gives an error, ignore log4j warning
