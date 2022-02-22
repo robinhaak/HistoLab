@@ -148,5 +148,5 @@ RH_auto_align_histology_ccf(sParams.strAlignmentSlicesPath);
 %-second: curate manually
 RH_manual_align_histology_ccf(vecTV, vecAV, tblST, sParams.strAlignmentSlicesPath);
 
-%display aligned CCF over histology slices
-RH_view_aligned_histology(tblST, sParams.strAlignmentSlicesPath);
+% %display aligned CCF over histology slices
+% RH_view_aligned_histology(tblST, sParams.strAlignmentSlicesPath);
