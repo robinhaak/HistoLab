@@ -10,7 +10,7 @@ load(fullfile(sParams.strAlignmentSlicesPath, 'reorderedflipped_histology.mat'))
 
 h = waitbar(0,'Organizing/flipping original histology...');
 for intChan = 1:length(sParams.cellChannels)
-    strSelectedChFolder = ['/Users/robinhaak/Downloads/test_slices' filesep sParams.cellChannels{intChan}];
+    strSelectedChFolder = [sParams.strSlidePath filesep sParams.cellChannels{intChan}];
     sTifDir = dir([strSelectedChFolder filesep '*.tif']) ;
     cellTifFileNames = natsortfiles(cellfun(@(path,fn) [path filesep fn], {sTifDir.folder},{sTifDir.name},'uni',false));
     % > filter for 'C'
