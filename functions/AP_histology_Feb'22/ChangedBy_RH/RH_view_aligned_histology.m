@@ -1,4 +1,4 @@
-function RH(st,slice_im_path)
+function RH_view_aligned_histology(st,slice_im_path)
 % AP_view_aligned_histology(st,slice_im_path)
 %
 % View histology slices with overlaid aligned CCF areas
@@ -22,7 +22,7 @@ end
 
 % Load corresponding CCF slices
 ccf_slice_fn = [slice_im_path filesep 'histology_ccf.mat'];
-load(ccf_slice_fn);
+load(ccf_slice_fn); %#ok<*LOAD> 
 gui_data.histology_ccf = histology_ccf;
 
 % Load histology/CCF alignment

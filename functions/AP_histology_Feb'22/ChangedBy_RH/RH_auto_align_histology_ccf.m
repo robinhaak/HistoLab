@@ -38,7 +38,7 @@ for curr_slice = 1:length(slice_im)
     curr_im_bw = nanmean(curr_histology,3); 
     slice_threshold = prctile(curr_im_bw(curr_im_bw ~= 0),50)/2; 
     
-    curr_histology_thresh = +(curr_im_bw > slice_threshold);
+    curr_histology_thresh = +(curr_im_bw > slice_threshold*2);
     
     % Resize atlas outline to approximately match histology, affine-align
     resize_factor = min(size(curr_histology_thresh)./size(curr_av_thresh));

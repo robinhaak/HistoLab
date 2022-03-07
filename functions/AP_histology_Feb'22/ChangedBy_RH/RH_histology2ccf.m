@@ -29,7 +29,7 @@ else
 end
 
 ccf_points = cell(length(atlas2histology_tform),1);
-for curr_slice = find(~cellfun(@isempty,histology_points))
+for curr_slice = 1:length(atlas2histology_tform) %find(~cellfun(@isempty,histology_points))
     
     % Transform histology to atlas slice
     tform.T = atlas2histology_tform{curr_slice};
@@ -44,9 +44,10 @@ for curr_slice = find(~cellfun(@isempty,histology_points))
     
     histology_points_atlas_x = round(histology_points_atlas_x);
     histology_points_atlas_y = round(histology_points_atlas_y);
-    
+
+
     probe_points_atlas_idx = sub2ind(size(histology_ccf(curr_slice).av_slices), ...
-        histology_points_atlas_y,histology_points_atlas_x);
+    histology_points_atlas_y,histology_points_atlas_x);
     
     % Get CCF coordinates for histology coordinates (CCF in AP,DV,ML)
     ccf_points{curr_slice} = ...

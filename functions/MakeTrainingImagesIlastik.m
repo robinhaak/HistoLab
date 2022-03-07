@@ -9,6 +9,7 @@ for intChan = 1:length(intSelectedCh)
     cellTifsForTraining = cellTifFileNames(unique([[2 round(length(cellTifFileNames)/2) length(cellTifFileNames)-2]]));
     
     intCount = 0;
+    vecImgCutout = cell(4*length(cellTifsForTraining), 1);
     for intTif = 1:length(cellTifsForTraining)
         vecCurrentImg = imread(cellTifsForTraining{intTif});
         %find coordinates that work for your specific project

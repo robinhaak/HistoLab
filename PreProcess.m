@@ -1,6 +1,6 @@
 
 %PRE-PROCESS slice images & ALIGN to Allen CCF
-%Robin Haak, 19 Feb '22
+%Robin Haak, 24 Feb '22
 %
 %-split .czis into multiple .tifs (per scene, per channel)
 %-reorder and/or flip slices, if applicable
@@ -37,7 +37,7 @@ sParmas.strInvestigator = cellAnswer{5};
 sParams.strCondition = cellAnswer{6};
 
 %% query user for path to czi files
-sParams.strSlidePath = uigetdir([], 'Select folder containing slide scans (.czi)...\n\n');
+sParams.strSlidePath = uigetdir([], 'Select folder containing slide scans (.czi)...');
 
 %get names of.czi files
 sCziDir = dir(fullfile(sParams.strSlidePath, '*.czi'));
@@ -123,7 +123,7 @@ OrganizeOriginalScenes(sParams);
 %save sParams
 save([sParams.strSlidePath filesep sParams.strMouseID '_' sParams.strExperimentDate '.mat'], 'sParams');
 
-%% create training set for ilastik (optional)
+%% create training set for ilastik, optional
 strAnswer = questdlg('Would you like to create training images for ilastik?', ...
 	'', 'Yes','No','Yes');
 switch strAnswer
@@ -149,4 +149,4 @@ RH_auto_align_histology_ccf(sParams.strAlignmentSlicesPath);
 RH_manual_align_histology_ccf(vecTV, vecAV, tblST, sParams.strAlignmentSlicesPath);
 
 % %display aligned CCF over histology slices
-% RH_view_aligned_histology(tblST, sParams.strAlignmentSlicesPath);
+RH_view_aligned_histology(tblST, sParams.strAlignmentSlicesPath);
